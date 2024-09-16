@@ -24,6 +24,12 @@ library(patchwork)
 
 # Read in data ######
 
+# !! NOTE: the specific data used to run this script can all be downloaded from
+# the Harvard Dataverse:
+# https://dataverse.harvard.edu/dataverse/rea_merten_rife_2024_NS
+# The script won't run unmodified until these data have been added to the paths
+# below. 
+
 # load civil data (1970-1987)
 f = "Data/FJC_raw/Civil 1970 to 1987.txt"
 fjc_old <- read_delim(f, delim = "\t", col_names = T)
@@ -40,6 +46,12 @@ test <- fjc %>%
   )
 
 rm(test)
+
+# !! NOTE: same as above. These data can all be downloaded from the Harvard
+# Dataverse:
+# https://dataverse.harvard.edu/dataverse/rea_merten_rife_2024_NS
+# The script won't run unmodified until these data have been added to the paths
+# below. 
 
 # load appellate data (1971-2007)
 f = "Data/FJC_raw/ap71to07.txt"

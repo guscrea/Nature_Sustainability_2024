@@ -160,6 +160,10 @@ rm(fjc_icr, fjc_icr_plt_mat, fjc_icr_def_mat, icr_ptyp, icr_dtyp)
 # Reliability for RESL primary variables - post-validation ####
 
 # load RESL data
+# !! NOTE: these data can be downloaded from the Harvard Dataverse:
+# https://dataverse.harvard.edu/dataverse/resl_eld
+# The script won't run without modification until these data have been download
+# and added to the path below: 
 resl <- read_csv("Data/RESL/RESL-Val_Cor_Clean_Meta.csv")
 
 # Make statutes and agencies lists (keep only unique)
