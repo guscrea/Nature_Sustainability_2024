@@ -3040,7 +3040,7 @@ resl_893s_plot <- resl_893s_stat %>%
     ) +
   labs(
     y = "Statutes",
-    x = '% of Enviro. Matters (NOS = 893) in LexisNexis data'
+    x = '% of Enviro. Matters (NOS = 893) in RESL ELD data'
   ) +
   theme_linedraw() +
   theme(
@@ -3135,7 +3135,7 @@ resl_NOT_893s_plot <- resl_NOT_893s_stat %>%
     ) +
   labs(
     y = "Statutes",
-    x = '% of all other NOS codes in LexisNexis data'
+    x = '% of all other NOS codes in RESL ELD data'
   ) +
   theme_linedraw() +
   theme(
@@ -3231,7 +3231,7 @@ resl_893s_plot_agy <- resl_893s_agy %>%
     ) +
   labs(
     y = "Agencies",
-    x = '% of Enviro. Matters (NOS = 893) in LexisNexis data'
+    x = '% of Enviro. Matters (NOS = 893) in RESL ELD data'
   ) +
   theme_linedraw() +
   theme(
@@ -3326,7 +3326,7 @@ resl_NOT_893s_plot_agy <- resl_NOT_893s_agy %>%
     ) +
   labs(
     y = "Agencies",
-    x = '% of all other NOS codes in LexisNexis data'
+    x = '% of all other NOS codes in RESL ELD data'
   ) +
   theme_linedraw() +
   theme(
@@ -3442,7 +3442,7 @@ resl_civil_rights_plot <- resl_civil_rights_stat %>%
     ) +
   labs(
     y = "Statutes",
-    x = '% of all civil rights (NOS = 440) codes in LexisNexis data'
+    x = '% of all civil rights (NOS = 440) codes in RESL ELD data'
   ) +
   theme_linedraw() +
   theme(
@@ -3538,7 +3538,7 @@ resl_ttl_plot <- resl_ttl_stat %>%
     ) +
   labs(
     y = "Statutes",
-    x = '% of all torts to land (NOS = 240) codes in LexisNexis data'
+    x = '% of all torts to land (NOS = 240) codes in RESL ELD data'
   ) +
   theme_linedraw() +
   theme(
@@ -3570,119 +3570,11 @@ ggsave(
 
 # plot RESL heatmap ####
 
+# call function for building resl df for heatmap ####
+source("Functions/resl_heatmap_df.R")
+
 # build resl df for heat map
-# using docket numbers, estimate the number of CASES per year
-resl_heatmap <- resl_fjc %>%
-  rowwise() %>%
-  # first, go to cases, not decisions.
-  mutate(
-    docket = str_split(docket, "%")
-  ) %>%
-  unnest_wider(
-    docket,
-    names_sep = "_"
-  ) %>%
-  pivot_longer(
-    cols = docket_1:docket_23,
-    names_to = "names_val",
-    values_to = "docket",
-    names_prefix = "docket_"
-  ) %>%
-  filter(
-    !is.na(docket),
-    docket != "#N/A"
-  ) %>%
-  mutate(
-    dist_docket = str_c(district, docket, sep = "-")
-  ) %>%
-  group_by(
-    dist_docket
-  ) %>%
-  filter(
-    row_number() == 1
-  ) %>%
-  select(
-    resl_ID, fjc_NOS, case_date, yr_term, plt_typ, def_typ
-  ) %>%
-  unnest_wider(
-    def_typ,
-    names_sep = "_"
-  ) %>%
-  pivot_longer(
-    cols = def_typ_1:last_col(),
-    #cols = def_typ_1:def_typ_1,  #keep only lead defendnat
-    names_to = "names_val",
-    values_to = "def_typ",
-    names_prefix = "def_typ_"
-  ) %>%
-  filter(
-    !is.na(def_typ),
-    yr_term >= 1988
-  ) %>%
-  select(
-    resl_ID, fjc_NOS, case_date, yr_term, def_typ, plt_typ
-  ) %>%
-  # now unnest and make longer plaintiff names...
-  unnest_wider(
-    plt_typ,
-    names_sep = "_"
-  ) %>%
-  pivot_longer(
-    cols = plt_typ_1:last_col(),
-    #cols = plt_typ_1:plt_typ_1, # keep only lead plaintiff
-    names_to = "names_val",
-    values_to = "plt_typ",
-    names_prefix = "plt_typ_"
-  ) %>%
-  filter(
-    !is.na(plt_typ)#,
-    #fjc_NOS != 893
-  ) %>%
-  select(
-    resl_ID,  fjc_NOS, case_date, yr_term, plt_typ, def_typ
-  ) %>%
-  # recode types to match heatmap inputs
-  mutate(
-    plt_typ = case_when(
-      plt_typ == "fed" ~ "FED",
-      plt_typ == "individual" ~ "IND",
-      plt_typ == "ngo" ~ "NGO",
-      plt_typ == "civic_assn" ~ "CIVIC",
-      plt_typ == "industry" ~ "BIZ",
-      plt_typ == "state" ~ "STA",
-      plt_typ == "trade_assn" ~ "BIZ",
-      plt_typ == "local" ~ "LOC",
-      plt_typ == "other" ~ "OTHER",
-      plt_typ == "tribe" ~ "TRIBE",
-      plt_typ == "public_org" ~ "LOC",
-      plt_typ == "union" ~ "OTHER",
-      plt_typ == "religious_org" ~ "NGO_O",
-      plt_typ == "none" ~ "OTHER",
-      plt_typ == "military" ~ "FED"
-    ),
-    def_typ = case_when(
-      def_typ == "fed" ~ "FED",
-      def_typ == "individual" ~ "IND",
-      def_typ == "ngo" ~ "NGO",
-      def_typ == "civic_assn" ~ "CIVIC",
-      def_typ == "industry" ~ "BIZ",
-      def_typ == "state" ~ "STA",
-      def_typ == "trade_assn" ~ "BIZ",
-      def_typ == "local" ~ "LOC",
-      def_typ == "other" ~ "OTHER",
-      def_typ == "tribe" ~ "TRIBE",
-      def_typ == "public_org" ~ "LOC",
-      def_typ == "union" ~ "OTHER",
-      def_typ == "religious_org" ~ "NGO_O",
-      def_typ == "none" ~ "OTHER",
-      def_typ == "military" ~ "FED"
-    ),
-    yr_file = yr_term
-  ) %>%
-  rename(
-    "PLT_typ" = "plt_typ",
-    "DEF_typ" = "def_typ"
-  )
+resl_heatmap <- resl_heat_df("all")
 
 
 # call heat map plotting function ####
@@ -3709,7 +3601,7 @@ resl_heat <- plot_PD_combo_heatmap(
   yr_start = 1988,
   yr_end = 2022,
   l_typs = l_typs,
-  title = "Plaintiff and Defendant Type Combinations - LexisNexis District Courts - 1988-2021\nUnweighted; all NOS codes",
+  title = "Plaintiff and Defendant Type Combinations - RESL ELD District Courts - 1988-2021\nUnweighted; all NOS codes",
   court_level = "D"
   )
 
@@ -3778,9 +3670,9 @@ df = simp_filt(
   ungroup()
 
 
-# start fo build heatmap to be adjusted by dismissal rate
+# build heatmap to be adjusted by dismissal rate ONLY NOS != 893 cases
 
-resl_heatmap_weighted <- resl_heatmap %>%
+resl_heatmap_weighted <- resl_heat_df("no893") %>% # calling df building function; no 893 cases
   ungroup() %>%
   mutate(
     # count all the cases in [possibly filtered] df
@@ -3885,7 +3777,7 @@ resl_heat_w <- resl_heatmap_weighted %>%
   ) +
   scale_x_discrete(position = "top") +
   labs(
-        title = "Plaintiff and Defendant Type Combinations - LexisNexis District Courts\nWeighted by est. Dismissal Rate; NOS != 893 Environmental Matters",
+        title = "Plaintiff and Defendant Type Combinations - RESL ELD District Courts\nWeighted by est. Dismissal Rate; NOS != 893 Environmental Matters",
         subtitle = str_c("n = ", prettyNum(first(resl_heatmap_weighted$tot_w), big.mark = ","), sep = ""),
         x = "Plaintiff Types",
         y = "Defendant Types",
@@ -3921,5 +3813,140 @@ ggsave(
   width = 180
 )
 
+
+
+
+# build heatmap to be adjusted by dismissal rate - ONLY NOS == 893 cases
+
+resl_heatmap_weighted <- resl_heat_df("893") %>% # calling df building function; only 893 cases
+  ungroup() %>%
+  mutate(
+    # count all the cases in [possibly filtered] df
+    tot_cases = n()
+  ) %>%
+  group_by(PLT_typ,DEF_typ) %>%
+  mutate(
+    PD_freq = n(),
+    PD_pct = round(PD_freq/tot_cases*100,2)
+  ) %>% select(
+    PLT_typ, DEF_typ, PD_freq, PD_pct, tot_cases
+  ) %>%
+  filter(
+    row_number() == 1
+  ) %>%
+  ungroup() %>%
+  mutate(
+    PLT_DEF = str_c(PLT_typ, DEF_typ)
+  ) %>%
+  left_join(
+    df %>%
+      filter(
+        dissmissal == "Judgment"
+      ) %>%
+      select(
+        PLT_DEF, diss_pct
+      ),
+    by = "PLT_DEF"
+  ) %>%
+  mutate(
+    PD_freq_w = round(PD_freq/(diss_pct/100),0),
+    tot = sum(PD_freq, na.rm = T),
+    tot_w = sum(PD_freq_w, na.rm = T),
+    PD_pct_w = round(PD_freq_w/tot_w*100,2)
+  ) %>%
+  filter(
+    # retain only specified plaintiff and defendant types
+    PLT_typ %in% l_typs,
+    DEF_typ %in% l_typs
+  ) %>%
+  # rename plaintiff types to easy-to-read formats
+  mutate(
+    PLT_typ = case_when(
+      PLT_typ == "BIZ" ~ "Firm & Trade Assn",
+      PLT_typ == "FED" ~ "Federal Gov't",
+      PLT_typ == "IND" ~ "Individual",
+      PLT_typ == "LOC" ~ "Local Gov't",
+      PLT_typ == "NGO" ~ "Enviro. NGOs",
+      PLT_typ == "STA" ~ "State Gov't",
+      PLT_typ == "CIVIC" ~ "Civic Orgs",
+      PLT_typ == "NGO_O" ~ "Other NGOs",
+      PLT_typ == "OTHER" ~ "Other Orgs",
+      PLT_typ == "TRIBE" ~ "Tribes",
+      TRUE ~ PLT_typ
+    ),
+    DEF_typ = case_when(
+      DEF_typ == "BIZ" ~ "Firm & Trade Assn",
+      DEF_typ == "FED" ~ "Federal Gov't",
+      DEF_typ == "IND" ~ "Individual",
+      DEF_typ == "LOC" ~ "Local Gov't",
+      DEF_typ == "NGO" ~ "Enviro. NGOs",
+      DEF_typ == "STA" ~ "State Gov't",
+      DEF_typ == "CIVIC" ~ "Civic Orgs",
+      DEF_typ == "NGO_O" ~ "Other NGOs",
+      DEF_typ == "OTHER" ~ "Other Orgs",
+      DEF_typ == "TRIBE" ~ "Tribes",
+      TRUE ~ DEF_typ
+    )
+  ) %>%
+  # reorder factors for plot
+  mutate(
+    DEF_typ = factor(
+      DEF_typ,
+      levels = sort(unique(DEF_typ), decreasing = TRUE),
+      labels = sort(unique(DEF_typ), decreasing = TRUE)
+    )
+  )
+
+# build plot
+resl_heat_w <- resl_heatmap_weighted %>%
+  ggplot() +
+  geom_tile(
+    aes(
+      x = PLT_typ,
+      y = DEF_typ,
+      fill = log(PD_pct_w)
+    )
+  ) +
+  geom_text(
+    aes(
+      x = PLT_typ,
+      y = DEF_typ,
+      label = PD_pct_w
+    ),
+    size.unit = "pt",
+    size = 7
+  ) + 
+  scale_fill_viridis_c(
+    breaks = c(-4.605, -2.30, 0, 2.302, 3.688),
+    labels = c(0.01, 0.1, 1, 10, 40)
+    #limits = c(-4.60517,4.0943)
+  ) +
+  scale_x_discrete(position = "top") +
+  labs(
+    title = "Plaintiff and Defendant Type Combinations - RESL ELD District Courts\nWeighted by est. Dismissal Rate; NOS == 893 Environmental Matters",
+    subtitle = str_c("n = ", prettyNum(first(resl_heatmap_weighted$tot_w), big.mark = ","), sep = ""),
+    x = "Plaintiff Types",
+    y = "Defendant Types",
+    fill = "Frequency\n(% of all cases\n weighted by dissmissal rate)"
+  ) +
+  theme_linedraw() +
+  theme(plot.title = element_text(size = 7),
+        plot.subtitle = element_text(size = 7),
+        text = element_text(size = 7)
+  )
+
+resl_heat_w / fjc_heat +
+  plot_annotation(tag_levels = 'A')  &
+  #plot_layout(guides = 'collect') &
+  theme(plot.tag = element_text(face = "bold"))
+
+
+ggsave(
+  "Fig_X_HEATMAP_fjc_resl_combo_WEIGHTED_893.png",
+  path = "Figures",
+  units = "mm",
+  height = 300,
+  width = 180
+)
 
 # the end

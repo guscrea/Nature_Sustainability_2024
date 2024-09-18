@@ -444,7 +444,7 @@ resl_c_to_d <- left_join(
 # plot ratio
 resl_c_to_d %>%
   mutate(
-    facet_lab = "Ratio of Est. Cases to Decisions in LexisNexis data"
+    facet_lab = "Ratio of Est. Cases to Decisions in RESL ELD data"
   ) %>%
   ggplot(
     aes(
@@ -994,12 +994,12 @@ fjc_resl_case_cnts %>%
     dta = case_when(
       dta == "fjc_tot_no_diss" ~ "FJC - all cases (no dismissals)",
       dta == "fjc_fil_no_diss" ~ "FJC IDB - cases used for analysis\n(excl. dismissals, which include\nsettlements)",
-      dta == "resl_all" ~ "LexisNexis - all enviro. decisions (est.)",
-      dta == "resl" ~ "LexisNexis - decisions used for\nanalysis",
-      dta == "resl_cases" ~ "LexisNexis - cases (est.)",
+      dta == "resl_all" ~ "RESL ELD - all enviro. decisions (est.)",
+      dta == "resl" ~ "RESL ELD - decisions used for\nanalysis",
+      dta == "resl_cases" ~ "RESL ELD - cases (est.)",
       TRUE ~ dta
     ),
-    plot_label = "LexisNexis Data in Three Periods"
+    plot_label = "RESL ELD Data in Three Periods"
     #plot_label = "Examining Anomalous Case Clusters"
   ) %>%
   ggplot(
