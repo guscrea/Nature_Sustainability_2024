@@ -3,9 +3,9 @@
 
 ## Rea, Merten, and Rife (2024) Replication Code
 
-This Github repository contains all of the code used in Rea, Merten, and
-Rife (2024), “Outcomes and Policy Focus of Environmental Litigation in
-the United States,” *Nature Sustainability*.
+This repository contains all of the code used in Rea, Merten, and Rife
+(2024), “Outcomes and Policy Focus of Environmental Litigation in the
+United States,” *Nature Sustainability*.
 
 The repository contains seven primary scripts and a range of other
 supporting files including supporting functions, data crosswalks,
