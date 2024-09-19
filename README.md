@@ -1,12 +1,5 @@
 
-<div class="figure" style="text-align: center">
-
-<img src="Images/RESL_Circular_logo.png" alt="RESL logo" width="30%" />
-<p class="caption">
-RESL logo
-</p>
-
-</div>
+<img src="Images/RESL_Circular_logo.png" width="30%" style="display: block; margin: auto;" />
 
 ## Rea, Merten, and Rife (2024) Replication Code
 
