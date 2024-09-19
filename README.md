@@ -16,9 +16,9 @@ in the spirit of full transparency and open science.
 
 ## Getting Started
 
-Running this replication code requires having the underlying raw data,
-which is accessible via the Harvard Dataverse. There are two primary
-data sources.
+Running this replication code requires having the underlying source
+data, which is accessible via the Harvard Dataverse. There are two
+primary data sources.
 
 1.  FJC IDB Data - The largest share of the analysis draws on data taken
     from the Federal Judicial Center Integrated Database (FJC IDB) Civil
@@ -46,21 +46,19 @@ This code repository is not ourganized around a primary or “meta” script
 that, with a single call, calls each individual sub-script in the
 repository to run through all the code.
 
-Instead, each script, numbered 1 to 7, should must be run manually and
-sequentially to move from raw data to all of the final outputs included
-in Rea, Merten, and Rife (2024).
+Instead, each script, numbered 1 to 7, must be run manually and
+sequentially to move from pre-processing the raw data all the way to the
+final outputs included in Rea, Merten, and Rife (2024). \> **Note:** One
+partial exception is the fourth script, 04-reliabilityR.R, which can be
+skipped without consequence for script 05. That is, one can run script
+03 and skip straight to script 05 without consequence. Script 04
+computes inter-coder reliability scores and does not modify (e.g. filter
+or reshape) the data in any way that would impact subsequent analysis.
 
-> **Note:** One partial exception is the fourth script,
-> 04-reliabilityR.R, which can be skipped without consequence for script
-> 05. That is, one can run script 03 and skip straight to script 05
-> without consequence. Script 04 computes inter-coder reliability scores
-> and does not modify (e.g. filter or reshape) the data in any way that
-> would impact subsequent analysis.
-
-Once the raw data files are located in the proper directories, run each
-script in its entirety, sequentially omving from script 01 to 07, to
-reproduce all analyses and visualizations in Rea, Merten, and Rife
-(2024).
+Thus, once the source data files are located in the proper directories,
+run each script in its entirety, sequentially moving from script 01 to
+07, to reproduce all analyses and visualizations in Rea, Merten, and
+Rife (2024).
 
 ## Output
 
@@ -74,8 +72,13 @@ Regression results tables and summary statistics will populate their
 corresponding folders in the /Data directory.
 
 Intermediate forms of data, e.g., after filtering, reshaping, joining,
-and recoding, will populate the /Data/FJC_preprocessed and
-/Data/FJC_postprocessed directories and subsequent sub-directories.
+and recoding, will populate the /Data/FJC_preprocessed,
+/Data/FJC_postprocessed, and other directories and sub-directories
+(e.g. for replication, etc.)
+
+In instances where data produced by the script had to be hand coded,
+e.g., for reliability checks, those hand-coded files are included in the
+repository.
 
 ## Further Documentation
 
