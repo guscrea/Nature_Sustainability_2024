@@ -11,7 +11,7 @@ knitr::include_graphics("Images/RESL_Circular_logo.png")
 
 This Github repository contains all of the code used in Rea, Merten, and Rife (2024), "Outcomes and Policy Focus of Environmental Litigation in the United States," *Nature Sustainability*.
 
-The repository contains seven primary scripts and a range of other supporting files including supporting function scripts, data crosswalks, manually coded variables, and supporting data sources, all of which are needed to fully replicate all visualizations and analyses present in Rea, Merten, and Rife (2024). We share this full suite of data and code in the spirit of full transparency and open science.
+The repository contains seven primary scripts and a range of other supporting files including supporting functions, data crosswalks, manually coded variables, and supporting data sources, all of which are needed to fully replicate all visualizations and analyses present in Rea, Merten, and Rife (2024). We share this full suite of data and code in the spirit of full transparency and open science.
 
 ## Getting Started
 
