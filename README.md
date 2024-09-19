@@ -48,12 +48,16 @@ repository to run through all the code.
 
 Instead, each script, numbered 1 to 7, must be run manually and
 sequentially to move from pre-processing the raw data all the way to the
-final outputs included in Rea, Merten, and Rife (2024). \> **Note:** One
-partial exception is the fourth script, 04-reliabilityR.R, which can be
-skipped without consequence for script 05. That is, one can run script
-03 and skip straight to script 05 without consequence. Script 04
-computes inter-coder reliability scores and does not modify (e.g. filter
-or reshape) the data in any way that would impact subsequent analysis.
+final outputs included in Rea, Merten, and Rife (2024). This includes
+all of the visualizations and analyses included in the Supplemental
+Information.
+
+> **Note:** One partial exception is the fourth script,
+> 04-reliabilityR.R, which can be skipped without consequence for script
+> 05. That is, one can run script 03 and skip straight to script 05
+> without consequence. Script 04 computes inter-coder reliability scores
+> and does not modify (e.g. filter or reshape) the data in any way that
+> would impact subsequent analysis.
 
 Thus, once the source data files are located in the proper directories,
 run each script in its entirety, sequentially moving from script 01 to
