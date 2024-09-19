@@ -27,18 +27,18 @@ data sources.
     the Dataverse:
     <https://dataverse.harvard.edu/dataverse/rea_merten_rife_2024_NS>.
 
-> Placing these FJC IDB files in the /Data/FJC_raw directory with names
-> unchanged (but perhaps shifting the file extension from .tab to .txt)
-> will allow the scripts to run seamlessly.
+    > Placing these FJC IDB files in the /Data/FJC_raw directory with
+    > names unchanged (but perhaps shifting the file extension from .tab
+    > to .txt) will allow the scripts to run seamlessly.
 
 2.  RESL ELD Data - Rea, Merten, and Rife (2024) also draws on the Rea
     Environment and Society Lab Environmental Law Database (RESL ELD).
     This data is also available in the Dataverse:
     <https://dataverse.harvard.edu/dataverse/resl_eld>.
 
-> Placing this RESL ELD file in the /Data/RESL directory with its name
-> unchanged (but perhaps shifting the file extension from .tab to .csv)
-> will allow the scripts to run seamlessly.
+    > Placing this RESL ELD file in the /Data/RESL directory with its
+    > name unchanged (but perhaps shifting the file extension from .tab
+    > to .csv) will allow the scripts to run seamlessly.
 
 ## Running the Code
 
