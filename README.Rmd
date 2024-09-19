@@ -3,7 +3,7 @@
 output: github_document
 ---
 
-```{r pressure, echo=FALSE, out.width = '30%', fig.align = "center"}
+```{r pressure, echo=FALSE, out.width = '30%', fig.align = "center", fig.alt="RESL logo"}
 knitr::include_graphics("Images/RESL_Circular_logo.png")
 ```
 

@@ -1,5 +1,5 @@
 
-<img src="Images/RESL_Circular_logo.png" width="30%" style="display: block; margin: auto;" />
+<img src="Images/RESL_Circular_logo.png" alt="RESL logo" width="30%" style="display: block; margin: auto;" />
 
 ## Rea, Merten, and Rife (2024) Replication Code
 
@@ -8,7 +8,7 @@ Rife (2024), “Outcomes and Policy Focus of Environmental Litigation in
 the United States,” *Nature Sustainability*.
 
 The repository contains seven primary scripts and a range of other
-supporting files including supporting function scripts, data crosswalks,
+supporting files including supporting functions, data crosswalks,
 manually coded variables, and supporting data sources, all of which are
 needed to fully replicate all visualizations and analyses present in
 Rea, Merten, and Rife (2024). We share this full suite of data and code
