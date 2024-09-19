@@ -95,7 +95,9 @@ Documentation](https://docs.google.com/document/d/1cLVq71dIXMKAhXpye3WG9Iy0PVMU2
 
 A detailed comparison of FJC IDB and RESL ELD data, which makes
 strengths and weaknesses of each data source apparent, is available in
-the Supplemental Information to Rea, Merten, and Rife (2024).
+the Supplemental Information to Rea, Merten, and Rife (2024). All of the
+code used to produce this comparison is, of course, included in this
+repository.
 
 ## Questions?
 

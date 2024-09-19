@@ -53,7 +53,7 @@ Basic documentation of the FJC IDB data is available via the Federal Judical Cen
 
 Detailed documentation on the content and assembly of the RESL ELD is available via the [RESL ELD Process Documentation](https://docs.google.com/document/d/1cLVq71dIXMKAhXpye3WG9Iy0PVMU2x3o9vp2YoWa7Ow/edit?usp=sharing).
 
-A detailed comparison of FJC IDB and RESL ELD data, which makes strengths and weaknesses of each data source apparent, is available in the Supplemental Information to Rea, Merten, and Rife (2024).
+A detailed comparison of FJC IDB and RESL ELD data, which makes strengths and weaknesses of each data source apparent, is available in the Supplemental Information to Rea, Merten, and Rife (2024). All of the code used to produce this comparison is, of course, included in this repository.
 
 ## Questions?
 
