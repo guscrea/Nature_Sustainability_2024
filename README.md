@@ -42,7 +42,7 @@ primary data sources.
 
 ## Running the Code
 
-This code repository is not ourganized around a primary or “meta” script
+This code repository is not organized around a primary or “meta” script
 that, with a single call, calls each individual sub-script in the
 repository to run through all the code.
 
