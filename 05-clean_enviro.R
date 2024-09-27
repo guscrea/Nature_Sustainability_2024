@@ -133,12 +133,17 @@ fjc_e <- fjc_e %>%
   left_join(
     dist_crosswalk, by = "DISTRICT"
   )
+ 
+# write out cleaned fjc_e df
+write_csv(
+  fjc_e,
+  "Data/FJC_postprocessed/District/fjc_e_post_processed_clean.csv"
+  )
 
 # Plot total cases for year for select districts ####
 
 # call function to build district-year dataframe
 source("Functions/dist_df.R")
-
 
 # Examine trends in just a few districts that have exceptionally high rates of
 # litigation. The most striking of all of theses is the Louisiana Eastern

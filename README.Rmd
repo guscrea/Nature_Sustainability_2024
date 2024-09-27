@@ -49,7 +49,7 @@ In instances where data produced by the script had to be hand coded, e.g., for r
 
 ## Further Documentation
 
-Basic documentation of the FJC IDB data is available via the Federal Judical Center directly, at [https://www.fjc.gov/research/idb](https://www.fjc.gov/research/idb).
+Basic documentation of the FJC IDB data is available via the Federal Judicial Center directly, at [https://www.fjc.gov/research/idb](https://www.fjc.gov/research/idb).
 
 Detailed documentation on the content and assembly of the RESL ELD is available via the [RESL ELD Process Documentation](https://docs.google.com/document/d/1cLVq71dIXMKAhXpye3WG9Iy0PVMU2x3o9vp2YoWa7Ow/edit?usp=sharing).
 

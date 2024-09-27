@@ -87,7 +87,7 @@ repository.
 ## Further Documentation
 
 Basic documentation of the FJC IDB data is available via the Federal
-Judical Center directly, at <https://www.fjc.gov/research/idb>.
+Judicial Center directly, at <https://www.fjc.gov/research/idb>.
 
 Detailed documentation on the content and assembly of the RESL ELD is
 available via the [RESL ELD Process
